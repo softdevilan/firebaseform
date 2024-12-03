@@ -1,0 +1,67 @@
+<div class="container">
+  <h1>Aplicación de Empleo</h1>
+
+  <!-- Formulario para agregar una oferta de empleo -->
+  <div class="form-container">
+    <h2>Añadir Oferta de Empleo</h2>
+    <form (ngSubmit)="addJobOffer()">
+      <div>
+        <label for="jobTitle">Título del trabajo</label>
+        <input type="text" id="jobTitle" [(ngModel)]="jobTitle" name="jobTitle" required>
+      </div>
+      <div>
+        <label for="jobType">Tipo de trabajo</label>
+        <input type="text" id="jobType" [(ngModel)]="jobType" name="jobType" required>
+      </div>
+      <div>
+        <label for="company">Empresa</label>
+        <input type="text" id="company" [(ngModel)]="company" name="company" required>
+      </div>
+      <button type="submit">Agregar Oferta</button>
+    </form>
+  </div>
+
+  <!-- Formulario para agregar una solicitud de empleo -->
+  <div class="form-container">
+    <h2>Añadir Solicitud de Empleo</h2>
+    <form (ngSubmit)="addJobApplication()">
+      <div>
+        <label for="applicantName">Nombre del solicitante</label>
+        <input type="text" id="applicantName" [(ngModel)]="applicantName" name="applicantName" required>
+      </div>
+      <div>
+        <label for="applicantEmail">Correo electrónico</label>
+        <input type="email" id="applicantEmail" [(ngModel)]="applicantEmail" name="applicantEmail" required>
+      </div>
+      <div>
+        <label for="jobId">ID de la oferta de trabajo</label>
+        <select id="jobId" [(ngModel)]="jobId" name="jobId" required>
+          <option *ngFor="let job of jobOffers" [value]="job.id">{{ job.title }} - {{ job.company }}</option>
+        </select>
+      </div>
+      <button type="submit">Enviar Solicitud</button>
+    </form>
+  </div>
+
+  <!-- Mostrar las ofertas de empleo -->
+  <div class="job-offers">
+    <h2>Ofertas de Empleo</h2>
+    <ul>
+      <li *ngFor="let offer of jobOffers">
+        <strong>{{ offer.title }}</strong> - {{ offer.company }}<br>
+        Tipo de trabajo: {{ offer.type }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Mostrar las solicitudes de empleo -->
+  <div class="job-applications">
+    <h2>Solicitudes de Empleo</h2>
+    <ul>
+      <li *ngFor="let application of jobApplications">
+        <strong>{{ application.name }}</strong> - {{ application.email }}<br>
+        Oferta de trabajo: {{ application.jobId }}
+      </li>
+    </ul>
+  </div>
+</div>
