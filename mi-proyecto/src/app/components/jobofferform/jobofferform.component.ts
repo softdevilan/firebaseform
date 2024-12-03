@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './jobofferform.component.css'
 })
 export class JobofferformComponent {
-
+  title = 'Job Offers Form'
 }
