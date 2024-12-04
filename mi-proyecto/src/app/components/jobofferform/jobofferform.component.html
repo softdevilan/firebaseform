@@ -1,19 +1,20 @@
-<div class="container mt-5">
-  <h1 class="text-center mb-4">Formulario para agregar ofertas de empleo</h1>
+<div class="container mt-5 text-light p-4">
+  <h1 class="text-center mb-4">¿Ofreces empleo? ¡Rellena este formulario!</h1>
   <form>
     <div class="mb-3">
       <label for="tituloOferta" class="form-label">Título:</label>
-      <input type="text" id="tituloOferta" class="form-control" placeholder="Ej. Buscamos desarrollador JAVA Junior" required>
+      <input type="text" id="tituloOferta" class="form-control bg-secondary text-light border-0" placeholder="Ej. Buscamos desarrollador JAVA Junior"
+        required>
     </div>
 
     <div class="mb-3">
       <label for="descripcionOferta" class="form-label">Descripción:</label>
-      <input type="text" id="descripcionOferta" class="form-control" placeholder="Descripción de la oferta" required>
+      <input type="text" id="descripcionOferta" class="form-control bg-secondary text-light border-0" placeholder="Descripción de la oferta" required>
     </div>
 
     <div class="mb-3">
       <label for="tipoOferta" class="form-label">Tipo de oferta:</label>
-      <select id="tipoOferta" class="form-select" required>
+      <select id="tipoOferta" class="form-select bg-secondary text-light border-0" required>
         <option value="Tiempo completo">Jornada completa</option>
         <option value="Medio tiempo">Media jornada</option>
         <option value="Freelance">Freelance</option>
@@ -22,16 +23,16 @@
 
     <div class="mb-3">
       <label for="sectorOferta" class="form-label">Sector:</label>
-      <select id="sectorOferta" class="form-select" required>
-        <option value="Restauracion">Restauración</option>
+      <select id="sectorOferta" class="form-select bg-secondary text-light border-0" required>
         <option value="Tech">Tech/Informática</option>
-        <option value="Agrario">Agrario</option>
+        <option value="Educación">Educación</option>
+        <option value="Restauracion">Restauración</option>
       </select>
     </div>
 
     <div class="mb-3">
       <label for="experienciaOferta" class="form-label">Experiencia requerida:</label>
-      <select id="experienciaOferta" class="form-select" required>
+      <select id="experienciaOferta" class="form-select bg-secondary text-light border-0" required>
         <option value="Menos de 1 año">Menos de 1 año</option>
         <option value="1 a 3 años">1 a 3 años</option>
         <option value="4 a 5 años">4 a 5 años</option>
@@ -41,7 +42,7 @@
 
     <div class="mb-3">
       <label for="ubicacionOferta" class="form-label">Ubicación:</label>
-      <select id="ubicacionOferta" class="form-select" required>
+      <select id="ubicacionOferta" class="form-select bg-secondary text-light border-0" required>
         <option value="Valencia">Valencia</option>
         <option value="Madrid">Madrid</option>
         <option value="Barcelona">Barcelona</option>
@@ -50,11 +51,11 @@
 
     <div class="mb-3">
       <label for="salarioOferta" class="form-label">Salario:</label>
-      <input type="text" id="salarioOferta" class="form-control" placeholder="Ej. 1500" required>
+      <input type="text" id="salarioOferta" class="form-control bg-secondary text-light border-0" placeholder="Ej. 1500" required>
     </div>
 
     <div class="text-center">
-      <button type="button" class="btn btn-primary" onclick="agregarOferta()">Agregar Oferta</button>
+      <button type="button" class="btn btn-warning my-2" (click)="enviarOferta()">Registrar oferta</button>
     </div>
   </form>
 </div>

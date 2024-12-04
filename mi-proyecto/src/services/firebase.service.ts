@@ -1,65 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Database, ref, set, push, get, child } from 'firebase/database';
-import { getDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, push } from 'firebase/database';
+import { environment } from '../enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseService {
-  private db: Database;
+  private app = initializeApp(environment.firebaseConfig);
+  private database = getDatabase(this.app);
 
-  constructor() {
-    this.db = getDatabase();
+  // Agregar una oferta de empleo
+  agregarOferta(oferta: {
+    titulo: string;
+    descripcion: string;
+    tipo: string;
+    sector: string;
+    experiencia: string;
+    ubicacion: string;
+    salario: string;
+  }): Promise<void> {
+    const ofertasRef = ref(this.database, 'ofertas');
+    return push(ofertasRef, oferta)
+      .then(() => alert('La oferta ha sido registrada correctamente. ¡Gracias!'))
+      .catch((error) => alert(`Error al agregar la oferta: ${error.message}`));
   }
 
-  // Método para agregar una oferta de empleo
-  addJobOffer(title: string, type: string, company: string) {
-    const newJobRef = push(ref(this.db, 'jobOffers'));
-    return set(newJobRef, {
-      title,
-      type,
-      company,
-    });
-  }
-
-  // Método para agregar una solicitud de empleo
-  addJobApplication(name: string, email: string, jobId: string) {
-    const newApplicationRef = push(ref(this.db, 'jobApplications'));
-    return set(newApplicationRef, {
-      name,
-      email,
-      jobId,
-    });
-  }
-
-  // Método para obtener todas las ofertas de empleo
-  getJobOffers(): Observable<any[]> {
-    const offersRef = ref(this.db, 'jobOffers');
-    return new Observable((observer) => {
-      get(offersRef).then((snapshot) => {
-        if (snapshot.exists()) {
-          const offers = Object.values(snapshot.val());
-          observer.next(offers);
-        } else {
-          observer.next([]);
-        }
-      }).catch(err => observer.error(err));
-    });
-  }
-
-  // Método para obtener todas las solicitudes de empleo
-  getJobApplications(): Observable<any[]> {
-    const applicationsRef = ref(this.db, 'jobApplications');
-    return new Observable((observer) => {
-      get(applicationsRef).then((snapshot) => {
-        if (snapshot.exists()) {
-          const applications = Object.values(snapshot.val());
-          observer.next(applications);
-        } else {
-          observer.next([]);
-        }
-      }).catch(err => observer.error(err));
-    });
+  // Agregar una demanda de empleo
+  agregarDemanda(demanda: {
+    nombre: string;
+    sector: string;
+    tipo: string;
+    experiencia: string;
+    ubicacion: string;
+  }): Promise<void> {
+    const demandasRef = ref(this.database, 'demandas');
+    return push(demandasRef, demanda)
+      .then(() => alert('La solicitud ha sido registrada correctamente. ¡Gracias y buena suerte!'))
+      .catch((error) => alert(`Error al agregar la demanda: ${error.message}`));
   }
 }

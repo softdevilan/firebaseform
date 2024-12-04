@@ -1,50 +1,50 @@
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Formulario para Demanda de Empleo</h1>
-    <form>
+<div class="container mt-5 text-light p-4">
+  <h1 class="text-center mb-4">¿Buscas empleo? ¡Rellena este formulario!</h1>
+  <form>
       <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre del demandante:</label>
-        <input type="text" id="nombre" class="form-control" placeholder="Ej. Juan Ruiz" required>
+          <label for="nombre" class="form-label">Nombre del demandante:</label>
+          <input type="text" id="nombre" class="form-control bg-secondary text-light border-0" placeholder="Ej. Juan Ruiz" required>
       </div>
 
       <div class="mb-3">
-        <label for="sector" class="form-label">Sector:</label>
-        <select id="sector" class="form-select" required>
-          <option value="Restauracion">Restauración</option>
-          <option value="Tech">Tech/Informática</option>
-          <option value="Agrario">Agrario</option>
-        </select>
+          <label for="sector" class="form-label">Sector:</label>
+          <select id="sector" class="form-select bg-secondary text-light border-0" required>
+              <option value="Tech">Tech/Informática</option>
+              <option value="Educación">Educación</option>
+              <option value="Restauracion">Restauración</option>
+          </select>
       </div>
 
       <div class="mb-3">
-        <label for="tipoDemanda" class="form-label">Tipo de puesto:</label>
-        <select id="tipoDemanda" class="form-select" required>
-          <option value="Tiempo completo">Jornada completa</option>
-          <option value="Medio tiempo">Media jornada</option>
-          <option value="Freelance">Freelance</option>
-        </select>
+          <label for="tipoDemanda" class="form-label">Tipo de puesto:</label>
+          <select id="tipoDemanda" class="form-select bg-secondary text-light border-0" required>
+              <option value="Tiempo completo">Jornada completa</option>
+              <option value="Medio tiempo">Media jornada</option>
+              <option value="Freelance">Freelance</option>
+          </select>
       </div>
 
       <div class="mb-3">
-        <label for="experienciaDemanda" class="form-label">Experiencia:</label>
-        <select id="experienciaDemanda" class="form-select" required>
-          <option value="Menos de 1 año">Menos de 1 año</option>
-          <option value="1 a 3 años">1 a 3 años</option>
-          <option value="4 a 5 años">4 a 5 años</option>
-          <option value="Más de 5 años">Más de 5 años</option>
-        </select>
+          <label for="experienciaDemanda" class="form-label">Experiencia:</label>
+          <select id="experienciaDemanda" class="form-select bg-secondary text-light border-0" required>
+              <option value="Menos de 1 año">Menos de 1 año</option>
+              <option value="1 a 3 años">1 a 3 años</option>
+              <option value="4 a 5 años">4 a 5 años</option>
+              <option value="Más de 5 años">Más de 5 años</option>
+          </select>
       </div>
 
       <div class="mb-3">
-        <label for="ubicacionDemanda" class="form-label">Ubicación:</label>
-        <select id="ubicacionDemanda" class="form-select" required>
-          <option value="Valencia">Valencia</option>
-          <option value="Madrid">Madrid</option>
-          <option value="Barcelona">Barcelona</option>
-        </select>
+          <label for="ubicacionDemanda" class="form-label">Ubicación:</label>
+          <select id="ubicacionDemanda" class="form-select bg-secondary text-light border-0" required>
+              <option value="Valencia">Valencia</option>
+              <option value="Madrid">Madrid</option>
+              <option value="Barcelona">Barcelona</option>
+          </select>
       </div>
 
       <div class="text-center">
-        <button type="button" class="btn btn-primary" onclick="agregarDemanda()">Registrar Demanda</button>
+          <button type="button" class="btn btn-warning my-3" (click)="enviarDemanda()">Enviar solicitud</button>
       </div>
-    </form>
-  </div>
+  </form>
+</div>
