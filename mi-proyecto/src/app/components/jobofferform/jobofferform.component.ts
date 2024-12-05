@@ -7,20 +7,17 @@ import { FirebaseService } from '../../../services/firebase.service';
   styleUrls: ['./jobofferform.component.css'],
 })
 export class JobOfferFormComponent {
-  oferta = {
-    titulo: '',
-    descripcion: '',
-    tipo: 'Tiempo completo',
-    sector: 'Tech',
-    experiencia: 'Menos de 1 año',
-    ubicacion: 'Valencia',
-    salario: '',
-  };
-
   constructor(private firebaseService: FirebaseService) {}
 
   enviarOferta(): void {
-    const { titulo, descripcion, tipo, sector, experiencia, ubicacion, salario } = this.oferta;
+    // Capturar los valores de los campos del formulario
+    const titulo = (document.getElementById('tituloOferta') as HTMLInputElement).value;
+    const descripcion = (document.getElementById('descripcionOferta') as HTMLInputElement).value;
+    const tipo = (document.getElementById('tipoOferta') as HTMLSelectElement).value;
+    const sector = (document.getElementById('sectorOferta') as HTMLSelectElement).value;
+    const experiencia = (document.getElementById('experienciaOferta') as HTMLSelectElement).value;
+    const ubicacion = (document.getElementById('ubicacionOferta') as HTMLInputElement).value;
+    const salario = (document.getElementById('salarioOferta') as HTMLInputElement).value;
 
     // Validar campos vacíos
     if (!titulo || !descripcion || !tipo || !sector || !experiencia || !ubicacion || !salario) {
@@ -28,19 +25,29 @@ export class JobOfferFormComponent {
       return;
     }
 
+    // Crear el objeto de oferta
+    const oferta = {
+      titulo,
+      descripcion,
+      tipo,
+      sector,
+      experiencia,
+      ubicacion,
+      salario,
+    };
+
     // Enviar a Firebase
-    this.firebaseService.agregarOferta(this.oferta).then(() => {
+    this.firebaseService.agregarOferta(oferta).then(() => {
       alert('La oferta ha sido registrada correctamente. ¡Gracias!');
-      // Reiniciar formulario
-      this.oferta = {
-        titulo: '',
-        descripcion: '',
-        tipo: 'Tiempo completo',
-        sector: 'Tech',
-        experiencia: 'Menos de 1 año',
-        ubicacion: 'Valencia',
-        salario: '',
-      };
+
+      // Reiniciar los valores de los campos del formulario
+      (document.getElementById('tituloOferta') as HTMLInputElement).value = '';
+      (document.getElementById('descripcionOferta') as HTMLInputElement).value = '';
+      (document.getElementById('tipoOferta') as HTMLSelectElement).value = 'Tiempo completo';
+      (document.getElementById('sectorOferta') as HTMLSelectElement).value = 'Tech';
+      (document.getElementById('experienciaOferta') as HTMLSelectElement).value = 'Menos de 1 año';
+      (document.getElementById('ubicacionOferta') as HTMLInputElement).value = 'Valencia';
+      (document.getElementById('salarioOferta') as HTMLInputElement).value = '';
     });
   }
 }

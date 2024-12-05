@@ -3,20 +3,19 @@
   <form>
     <div class="mb-3">
       <label for="tituloOferta" class="form-label">Título:</label>
-      <input type="text" id="tituloOferta" class="form-control bg-secondary text-light border-0" placeholder="Ej. Buscamos desarrollador JAVA Junior"
-        required>
+      <input type="text" id="tituloOferta" class="form-control bg-secondary text-light border-0" placeholder="Ej. Buscamos desarrollador JAVA Junior" required>
     </div>
 
     <div class="mb-3">
       <label for="descripcionOferta" class="form-label">Descripción:</label>
-      <input type="text" id="descripcionOferta" class="form-control bg-secondary text-light border-0" placeholder="Descripción de la oferta" required>
+      <textarea id="descripcionOferta" class="form-control bg-secondary text-light border-0" rows="3" placeholder="Describe la oferta" required></textarea>
     </div>
 
     <div class="mb-3">
       <label for="tipoOferta" class="form-label">Tipo de oferta:</label>
       <select id="tipoOferta" class="form-select bg-secondary text-light border-0" required>
         <option value="Tiempo completo">Jornada completa</option>
-        <option value="Medio tiempo">Media jornada</option>
+        <option value="Media jornada">Media jornada</option>
         <option value="Freelance">Freelance</option>
       </select>
     </div>
