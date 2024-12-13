@@ -1,0 +1,109 @@
+<nav class="navbar-light">
+    <!-- Link al formulario de demanda de empleo-->
+    <p class="text-light text-center">¿Quieres registrar uns oferta de empleo? <a
+            [routerLink]="['/application-form']" class="text-warning">¡Rellena este formulario!</a></p> <!-- añadir en ts -->
+
+    <!-- Formulario de búsqueda -->
+    <form class="d-flex search-bar align-items-start" [formGroup]="form" (ngSubmit)="buscarDemanda()"> <!-- añadir en ts -->
+
+        <!-- Botón de filtros -->
+        <div class="dropdown me-2">
+
+            <button class="btn btn-warning dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Filtros
+            </button>
+
+            <div class="dropdown-menu p-3 filter-div bg-secondary text-light" aria-labelledby="filterDropdown">
+                <div class="row g-3">
+                    <!-- Filtro: Salario -->
+                    <div class="col-12 col-md-4 ">
+                        <label for="salaryFilter" class="form-label">Salario</label>
+                        <select class="form-select" id="salaryFilter" formControlName="salario">
+                            <option value="">Cualquiera</option>
+                            <option value="500">500€ - 1000€</option>
+                            <option value="1000">1000€ - 1500€</option>
+                            <option value="1500">1500€ - 2000€</option>
+                            <option value="2000">+2000€</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro: Sector -->
+                    <div class="col-12 col-md-4">
+                        <label for="sectorFilter" class="form-label">Sector</label>
+                        <select class="form-select" id="sectorFilter" formControlName="sector">
+                            <option value="">Cualquiera</option>
+                            <option value="Tech">Tech/Informática</option>
+                            <option value="Educación">Educación</option>
+                            <option value="Restauración">Restauración</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro: Ubicación -->
+                    <div class="col-12 col-md-4">
+                        <label for="locationFilter" class="form-label">Ubicación</label>
+                        <select class="form-select" id="locationFilter" formControlName="ubicacion">
+                            <option value="">Cualquiera</option>
+                            <option value="Valencia">Valencia</option>
+                            <option value="Madrid">Madrid</option>
+                            <option value="Barcelona">Barcelona</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro: Jornada -->
+                    <div class="col-12 col-md-6">
+                        <label for="scheduleFilter" class="form-label">Jornada</label>
+                        <select class="form-select" id="scheduleFilter" formControlName="tipo">
+                            <option value="">Cualquiera</option>
+                            <option value="Jornada completa">Jornada completa</option>
+                            <option value="Media jornada">Media jornada</option>
+                            <option value="Freelance">Freelance</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro: Experiencia -->
+                    <div class="col-12 col-md-6">
+                        <label for="experienceFilter" class="form-label">Experiencia</label>
+                        <select class="form-select" id="experienceFilter" formControlName="experiencia">
+                            <option value="">Cualquiera</option>
+                            <option value="Menos de 1 año">Menos de 1 año</option>
+                            <option value="1 a 3 años">1 a 3 años</option>
+                            <option value="4 a 5 años">4 a 5 años</option>
+                            <option value="Más de 5 años">Más de 5 años</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Barra de búsqueda -->
+        <input class="form-control me-2 bg-secondary text-light border-secondary" type="search"
+            placeholder="Ej. Programador Java" aria-label="Search" formControlName="titulo" />
+
+        <!-- Botón de búsqueda -->
+        <button class="btn btn-outline-warning" type="submit">Buscar</button>
+    </form>
+</nav>
+
+<!-- Aquí tienen que salir las demandas que cumplan con los filtros, añadir en ts!! y cambiar nombre -->
+<div class="container">
+    <h3 class="text-warning mb-3 mx-2">Demandas encontradas: </h3>
+    <div class="row">
+        <div class="col-lg-6" *ngFor="let oferta of filteredOffers">
+            <div class="card m-1 border-secondary">
+                <div class="card-body offer-card bg-secondary">
+                    <h5 class="card-title text-warning">{{ oferta.titulo }}</h5>
+                    <h6 class="card-subtitle mb-2 text-light">{{ oferta.ubicacion }} | {{ oferta.tipo }} | {{
+                        oferta.sector }}</h6>
+                    <p class="card-text text-dark mt-4"><strong>Descripción de la oferta: </strong> {{
+                        oferta.descripcion }}</p>
+                    <p class="card-text text-dark"><strong>Experiencia requerida: </strong> {{ oferta.experiencia }}</p>
+                    <p class="card-text text-dark"><strong>Salario: </strong> {{ oferta.salario }}€ / mes</p>
+                    <a href="#" class="btn btn-outline-warning">Inscribirme en la oferta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

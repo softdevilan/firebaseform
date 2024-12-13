@@ -9,6 +9,20 @@ form{
     min-width: fit-content;
 }
 
+.search-bar{
+  display: flex;
+  align-items: center;
+  min-width: 70vw;
+}
+
+.input-search{
+  max-height: fit-content;
+}
+
+.filter-div{
+  min-width: 70vw !important;
+}
+
 .form-control:focus, .form-select:focus {
     box-shadow: 0 0 0 0.15rem rgba(255, 193, 7, 1); 
 }
@@ -29,7 +43,7 @@ form{
   .nav-pills .nav-link.active {
     background-color: #ffc107;
     font-weight: 600;
-    color: rgb(49, 46, 46) !important ; /* Fondo amarillo */
+    color: rgb(49, 46, 46) !important ;
   }
   
   .btn, .nav-pills .nav-link{
