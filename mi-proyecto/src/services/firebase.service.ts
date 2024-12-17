@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, push, get, child } from 'firebase/database';
+import { getDatabase, ref, push, get } from 'firebase/database';
 import { environment } from '../enviroments/enviroment';
 
 @Injectable({
@@ -30,6 +30,7 @@ export class FirebaseService {
   agregarDemanda(demanda: {
     nombre: string;
     sector: string;
+    descripcion: string;
     tipo: string;
     experiencia: string;
     ubicacion: string;
@@ -42,22 +43,50 @@ export class FirebaseService {
 
   // Obtener todas las ofertas de empleo
   obtenerOfertas(): Promise<any[]> {
+
     const ofertasRef = ref(this.database, 'ofertas');
+
     return get(ofertasRef)
       .then((snapshot) => {
+
         if (snapshot.exists()) {
           const ofertas = snapshot.val();
+
           // Convertir el objeto obtenido en un array
           return Object.keys(ofertas).map((key) => ({
             id: key,
             ...ofertas[key],
+          }));
+
+        } else {
+          return [];
+        }
+
+      })
+      .catch((error) => {
+        console.error('Error al obtener las ofertas:', error);
+        throw error;
+      });
+  }
+
+  // Obtener todas las demandas de empleo
+  obtenerDemandas(): Promise<any[]> {
+    const demandasRef = ref(this.database, 'demandas');
+    return get(demandasRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const demandas = snapshot.val();
+          // Convertir el objeto obtenido en un array
+          return Object.keys(demandas).map((key) => ({
+            id: key,
+            ...demandas[key],
           }));
         } else {
           return [];
         }
       })
       .catch((error) => {
-        console.error('Error al obtener las ofertas:', error);
+        console.error('Error al obtener las demandas:', error);
         throw error;
       });
   }

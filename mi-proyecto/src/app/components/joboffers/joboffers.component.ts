@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../../services/firebase.service';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -17,8 +17,10 @@ export class JobOffersComponent implements OnInit {
   offers: any[] = []; // Contendrá todas las ofertas cargadas desde Firebase
   filteredOffers: any[] = []; // Ofertas filtradas según el formulario
 
+  formSubmitted: boolean = false;
+
   constructor(private firebaseService: FirebaseService, private fb: FormBuilder) {
-    // Inicialización del formulario con validadores básicos
+    // Inicialización del formulario
     this.form = this.fb.group({
       salario: [''],
       sector: [''],
@@ -58,5 +60,24 @@ export class JobOffersComponent implements OnInit {
         (!filters.titulo || oferta.titulo.toLowerCase().includes(filters.titulo.toLowerCase()))
       );
     });
+
+    this.formSubmitted = true;
+  }
+
+  // Getter para contar las demandas filtradas
+  get totalOfertas(): number {
+    return this.filteredOffers.length;
+  }
+
+  limpiarFiltros(): void {
+    this.form.reset({
+      salario: '',
+      sector: '',
+      ubicacion: '',
+      tipo: '',
+      experiencia: '',
+      titulo: ''
+    });
+    this.filteredOffers = [...this.offers];
   }
 }
